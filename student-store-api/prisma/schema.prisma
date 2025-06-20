@@ -12,3 +12,23 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Int
+  image_url   String   @default("https://shop.songprinting.com/global/images/PublicShop/ProductSearch/prodgr_default_300.png")
+  category    String
+
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  customer    String
+  total       Int
+  status      String
+  createdAt   String  
+
+}
+
