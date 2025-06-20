@@ -25,52 +25,52 @@ exports.getAll = async (req, res) => {
     } 
 
     try {
-        const products = await prisma.product.findMany({
+        const orders = await prisma.order.findMany({
             where: filters,
             orderBy: orderBy.length ? orderBy : undefined,
         });
 
-        res.json(products);
+        res.json(orders);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "Failed to fetch products" });
+        res.status(500).json({ error: "Failed to fetch orders" });
     }
 };
 
 exports.getById = async (req, res) => {
     const id = Number(req.params.id)
-    const product = await prisma.product.findUnique({where : { id }});
-    if (!product) return res.status(404).json({ error: "Not found!" });
-    res.json(product);
+    const order = await prisma.order.findUnique({where : { id }});
+    if (!order) return res.status(404).json({ error: "Not found!" });
+    res.json(order);
 }
-// Post /products
+// Post /orders
 exports.create = async (req, res) => {
     const {customer, total, status, createdAt } = req.body
     if (!customer || !total || !status || !createdAt) {
         return res.status(400).json({ error: "Missing required fields" });
     }
 
-    const newProduct = await prisma.product.create({
+    const neworder = await prisma.order.create({
         data: {customer, total, status, createdAt}
     });
-    res.status(201).json(newProduct)
+    res.status(201).json(neworder)
 }
 
-// Put /products/:id
+// Put /orders/:id
 exports.update = async (req, res) => {
     const id = Number(req.params.id)
     const { customer, total, status, createdAt } = req.body
-    const updatedProduct = await prisma.product.update({
+    const updatedorder = await prisma.order.update({
         where: { id },
         data: { customer, total, status, createdAt },
     })
-    res.json(updatedProduct)
+    res.json(updatedorder)
 }
 
 // Delete
 exports.remove = async (req, res) => {
     const id = Number(req.params.id);
-    await prisma.product.delete ({ where : { id }})
+    await prisma.order.delete ({ where : { id }})
     res.status(204).end();
 }
 
