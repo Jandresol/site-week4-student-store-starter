@@ -8,7 +8,8 @@ import ProductDetail from "../ProductDetail/ProductDetail";
 import NotFound from "../NotFound/NotFound";
 import { removeFromCart, addToCart, getQuantityOfItemInCart, getTotalItemsInCart } from "../../utils/cart";
 import "./App.css";
-
+import Header from "../Header/Header"
+import Orders from "../Orders/Orders";
 function App() {
 
   // State variables
@@ -109,6 +110,7 @@ function App() {
           setOrder={setOrder}
         />
         <main>
+          <Header/>
           <SubNavbar
             activeCategory={activeCategory}
             setActiveCategory={setActiveCategory}
@@ -143,6 +145,12 @@ function App() {
                   removeFromCart={handleOnRemoveFromCart}
                   getQuantityOfItemInCart={handleGetItemQuantity}
                 />
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <Orders/>
               }
             />
             <Route

@@ -1,0 +1,30 @@
+.header {
+  background-color: #d6e9c6; /* soft green */
+  color: #2e3c2f; /* deep earthy green */
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.header-content {
+  max-width: 600px;
+}
+
+.header-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color:#2e3c2f;
+}
+
+.header-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.header h1{
+    font-family:'serif';
+}
