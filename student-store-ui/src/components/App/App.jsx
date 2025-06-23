@@ -39,6 +39,22 @@ function App() {
   const handleOnCheckout = async () => {
   }
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsFetching(true);
+      try {
+        const { data } = await axios.get("http://localhost:3000/products") ;
+        console.log(data);
+        setProducts(data);
+        } catch (err) {
+          console.error("Error Fetching Products")
+        } finally {
+          setIsFetching(false);
+        }
+      };
+      fetchProducts();
+    }, []);
+
 
   return (
     <div className="App">
@@ -116,4 +132,3 @@ function App() {
 }
 
 export default App;
- 

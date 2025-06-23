@@ -2,7 +2,6 @@ import ProductCard from "../ProductCard/ProductCard"
 import "./ProductGrid.css"
 
 function ProductGrid({ addToCart, removeFromCart, getQuantityOfItemInCart, products = [] }) {
-
   return (
     <div id="Buy" className="ProductGrid">
       <div className="content">

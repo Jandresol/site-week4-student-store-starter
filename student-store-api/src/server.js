@@ -4,7 +4,15 @@ const express = require('express')
 const app = express()
 const productRoutes = require("./routes/productRoutes.js")
 const orderRoutes = require("./routes/orderRoutes.js")
+const cors = require("cors")
+const morgan = require("morgan")
 
+const corsOption = {
+    origin: "http://localhost:3000/"
+}
+
+app.use(morgan("dev"))
+app.use(cors())
 // So we can parse json
 app.use(express.json())
 

@@ -46,19 +46,25 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     const id = Number(req.params.id)
-    const order = await prisma.order.findUnique({where : { id }});
+    const order = await prisma.order.findUnique({
+        where: { id },
+        include: {
+            orderItems: true,
+        },
+    });
     if (!order) return res.status(404).json({ error: "Not found!" });
+    await updateOrderTotal(id);
     res.json(order);
 }
 // Post /orders
 exports.create = async (req, res) => {
-    const {customer, total, status, createdAt } = req.body
-    if (!customer || !total || !status) {
+    const {customer, status, createdAt } = req.body
+    if (!customer || !status) {
         return res.status(400).json({ error: "Missing required fields" });
     }
 
     const neworder = await prisma.order.create({
-        data: {customer, total, status, createdAt}
+        data: {customer, status, createdAt}
     });
     res.status(201).json(neworder)
 }
@@ -66,10 +72,10 @@ exports.create = async (req, res) => {
 // Put /orders/:id
 exports.update = async (req, res) => {
     const id = Number(req.params.id)
-    const { customer, total, status, createdAt } = req.body
+    const { customer, status, createdAt } = req.body
     const updatedorder = await prisma.order.update({
         where: { id },
-        data: { customer, total, status, createdAt },
+        data: { customer, status, createdAt },
     })
     res.json(updatedorder)
 }
@@ -80,4 +86,80 @@ exports.remove = async (req, res) => {
     await prisma.order.delete ({ where : { id }})
     res.status(204).end();
 }
+
+// Update Order Total
+async function updateOrderTotal(orderId) {
+    const items = await prisma.orderItem.findMany({
+        where: { orderId },
+    });
+
+    const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    await prisma.order.update({
+        where: { id: orderId },
+        data: { total },
+    });
+
+    return total;
+}
+
+// GET /orders/:id/items
+exports.getOrderItems = async (req, res) => {
+    const orderId = Number(req.params.id);
+
+    const items = await prisma.orderItem.findMany({
+        where: { orderId },
+        include: {
+            product: true
+        }
+    });
+
+    res.json(items);
+};
+
+// Post /orders/:id/items
+exports.createOrderItem = async (req, res) => {
+    const orderId = Number(req.params.id);
+    const { productId, quantity } = req.body;
+
+    if (!productId || !quantity) {
+        return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const product = await prisma.product.findUnique({
+        where: { id: productId }
+    });
+
+    if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+    }
+
+    const newOrderItem = await prisma.orderItem.create({
+        data: {
+            orderId,
+            productId,
+            quantity,
+            price: product.price
+        }
+    });
+    await updateOrderTotal(orderId);
+    res.status(201).json(newOrderItem);
+};
+
+// GET /orders/:id/total
+exports.getOrderTotal = async (req, res) => {
+    const orderId = Number(req.params.id);
+    const order = await prisma.order.findUnique({
+        where: { id: orderId },
+        select: { total: true }
+    });
+
+    if (!order) {
+        return res.status(404).json({ error: "Order not found" });
+    }
+
+    res.json({ total: order.total });
+};
+
+
 
