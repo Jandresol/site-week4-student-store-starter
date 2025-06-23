@@ -1,7 +1,7 @@
 const prisma  = require("../db/db");
 
 exports.getAll = async (req, res) => {
-    const { customer, sort } = req.query
+    const { customer, sort, status } = req.query
 
     const filters = {}
     const orderBy = []
@@ -9,6 +9,13 @@ exports.getAll = async (req, res) => {
     if (customer) {
         filters.customer = {
             contains: customer,
+            mode: 'insensitive'
+        }
+    }
+
+    if (status) {
+        filters.status = {
+            contains: status,
             mode: 'insensitive'
         }
     }
@@ -46,7 +53,7 @@ exports.getById = async (req, res) => {
 // Post /orders
 exports.create = async (req, res) => {
     const {customer, total, status, createdAt } = req.body
-    if (!customer || !total || !status || !createdAt) {
+    if (!customer || !total || !status) {
         return res.status(400).json({ error: "Missing required fields" });
     }
 
