@@ -58,13 +58,13 @@ exports.getById = async (req, res) => {
 }
 // Post /orders
 exports.create = async (req, res) => {
-    const {customer, status, createdAt } = req.body
+    const {customer, status } = req.body
     if (!customer || !status) {
         return res.status(400).json({ error: "Missing required fields" });
     }
 
     const neworder = await prisma.order.create({
-        data: {customer, status, createdAt}
+        data: {customer, status}
     });
     res.status(201).json(neworder)
 }
@@ -75,7 +75,7 @@ exports.update = async (req, res) => {
     const { customer, status, createdAt } = req.body
     const updatedorder = await prisma.order.update({
         where: { id },
-        data: { customer, status, createdAt },
+        data: { customer, status },
     })
     res.json(updatedorder)
 }
