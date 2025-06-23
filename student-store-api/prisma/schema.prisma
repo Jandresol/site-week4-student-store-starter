@@ -25,7 +25,8 @@ model Product {
 
 model Order {
   id        Int      @id @default(autoincrement())
-  customer  String
+  email     String   @default("example@gmail.com")
+  customer  String   
   total     Float    @default(0)
   status    String
   createdAt DateTime @default(now())

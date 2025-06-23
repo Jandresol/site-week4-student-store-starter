@@ -1,0 +1,233 @@
+/* Import clean fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.OrderPage {
+  width: 80%;
+max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+/* Header section */
+.OrderPage h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 24px 0;
+  text-align: left;
+  border-bottom: 3px solid #4CAF50;
+  padding-bottom: 16px;
+}
+
+/* Order summary card */
+.order-summary {
+    width: 100%;
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.OrderPage > p {
+  font-size: 16px;
+  color: #333;
+  margin: 12px 0;
+  line-height: 1.5;
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.OrderPage > p:first-of-type {
+  margin-top: 0;
+}
+
+.OrderPage > p strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Status styling */
+.order-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 8px;
+}
+
+.order-status.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.order-status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.order-status.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Total price highlight */
+.order-total {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #4CAF50 !important;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+  border: 2px solid #4CAF50 !important;
+}
+
+/* Items section */
+.OrderPage h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 32px 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e1e5e9;
+}
+
+/* Order items list */
+.order-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+/* Individual item card */
+.order-item-details {
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.order-item-details:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #4CAF50;
+}
+
+.order-item-details::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 4px 0 0 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.order-item-details:hover::before {
+  opacity: 1;
+}
+
+.order-item-details p {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-item-details p:first-child {
+  margin-top: 0;
+}
+
+.order-item-details p:last-child {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #4CAF50;
+  font-size: 16px;
+}
+
+/* Loading and error states */
+.OrderPage .error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.OrderPage > p:first-child {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 40px 20px;
+}
+
+/* Enhanced grid layout for larger screens */
+@media (min-width: 768px) {
+  .order-items {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .order-item-details {
+    padding: 24px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .OrderPage {
+    padding: 16px;
+  }
+  
+  .OrderPage h1 {
+    font-size: 26px;
+  }
+  
+  .OrderPage h2 {
+    font-size: 20px;
+  }
+  
+  .OrderPage > p {
+    padding: 16px;
+  }
+  
+  .order-item-details {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .OrderPage h1 {
+    font-size: 22px;
+  }
+  
+  .order-item-details p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

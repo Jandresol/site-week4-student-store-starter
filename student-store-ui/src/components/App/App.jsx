@@ -10,13 +10,15 @@ import { removeFromCart, addToCart, getQuantityOfItemInCart, getTotalItemsInCart
 import "./App.css";
 import Header from "../Header/Header"
 import Orders from "../Orders/Orders";
+import OrderPage from "../OrderPage/OrderPage";
+
 function App() {
 
   // State variables
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All Categories");
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [userInfo, setUserInfo] = useState({ name: "", dorm_number: ""});
+  const [userInfo, setUserInfo] = useState({ name: "", email: ""});
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [isFetching, setIsFetching] = useState(false);
@@ -45,6 +47,7 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         customer: userInfo.name,
+        email: userInfo.email,
         status: "completed"
       }),
     });
@@ -151,6 +154,12 @@ function App() {
               path="/orders"
               element={
                 <Orders/>
+              }
+            />
+            <Route
+              path="/orders/:orderId"
+              element={
+                <OrderPage/>
               }
             />
             <Route

@@ -58,13 +58,13 @@ exports.getById = async (req, res) => {
 }
 // Post /orders
 exports.create = async (req, res) => {
-    const {customer, status } = req.body
+    const {email, customer, status } = req.body
     if (!customer || !status) {
         return res.status(400).json({ error: "Missing required fields" });
     }
 
     const neworder = await prisma.order.create({
-        data: {customer, status}
+        data: {email, customer, status}
     });
     res.status(201).json(neworder)
 }
