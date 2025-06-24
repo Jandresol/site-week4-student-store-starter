@@ -1,25 +1,116 @@
-.header {
-  background-color: #d6e9c6; /* soft green */
-  color: #2e3c2f; /* deep earthy green */
-  padding: 4rem 2rem;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.header-content {
-  max-width: 600px;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
-.header-title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color:#2e3c2f;
-  font-weight: 400;
-  font-family:'DM Serif Display';
-}
-.header-subtitle {
-  font-size: 1.25rem;
-}
+        .big-header {
+            position: relative;
+            height: 70vh;
+            background-color: #d6e9c6; /* soft green */
+            color: #2e3c2f; /* deep earthy green */
+            padding: 4rem 2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://media.desenio.com/site_images/67f868448694c012d47aee9d_336223742_INSP10970_main_image_DS.jpg?auto=compress%2Cformat&fit=max&w=3840');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .big-header::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(29, 47, 15, 0.284); /* semi-transparent overlay */
+            z-index: 1;
+        }
+
+        .header-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            position: relative;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        .header-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #614f39, transparent);
+            animation: expandLine 1.5s ease-out 0.5s both;
+        }
+
+        .header-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.25rem, 3vw, 1.6rem);
+            color: #ffffff;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                width: 0;
+            }
+            to {
+                width: 120px;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            .header-title {
+                margin-bottom: 1rem;
+            }
+        }

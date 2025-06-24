@@ -4,7 +4,7 @@ exports.getAll = async (req, res) => {
     const { customer, sort, status } = req.query
 
     const filters = {}
-    const orderBy = []
+    const orderBy = [{createdAt: "asc"}]
 
     if (customer) {
         filters.customer = {

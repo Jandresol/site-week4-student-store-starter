@@ -31,10 +31,7 @@
   margin-top: 20px;
   transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-/* .Sidebar .toggle-button i {
-  color: white;
-  cursor: pointer;
-} */
+
 .Sidebar .toggle-button.open {
   transform: rotateY(180deg);
 }

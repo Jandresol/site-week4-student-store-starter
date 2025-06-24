@@ -5,6 +5,7 @@
   --content-width: 1100px;
   --dark-blue: #2c4047;
   --bright-green: #9bb68e;
+  --dark-green: #32643b;
   --pure-white: #fff;
   --grey-bg: #f7f7f7;
   --accent-orange: #fcb747;
@@ -34,7 +35,7 @@ code {
   box-sizing: border-box;
 }
 
-a,
+
 span,
 div,
 p,

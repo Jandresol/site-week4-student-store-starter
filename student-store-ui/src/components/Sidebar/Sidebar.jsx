@@ -10,11 +10,6 @@ function Sidebar({ cart, isOpen, products, userInfo, setUserInfo, toggleSidebar,
 
       <div className="wrapper">
 
-        <div className="logo">
-            <Link to="/">
-              <img src={logo} alt="codepath logo" />
-            </Link>
-        </div>
 
         <span className={`toggle-button button ${isOpen ? "open" : "closed"}`} onClick={toggleSidebar}>
           <i className="material-icons md-48">arrow_forward</i>
