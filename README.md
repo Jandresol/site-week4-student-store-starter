@@ -74,18 +74,18 @@ Deployed Application (optional): [Student Store Deployed Site](ADD_LINK_HERE)
   - [ ] `GET /order-items`: Create an endpoint for fetching all order items in the database.
   - [ ] `POST /orders/:order_id/items` Create an endpoint that adds a new order item to an existing order. 
 - [ ] **Past Orders Page**
-  - [ ] Build a page in the UI that displays the list of all past orders.
-  - [ ] The page lists all past orders for the user, including relevant information such as:
-    - [ ] Order ID
-    - [ ] Date
-    - [ ] Total cost
-    - [ ] Order status.
-  - [ ] The user should be able to click on any individual order to take them to a separate page detailing the transaction.
-  - [ ] The individual transaction page provides comprehensive information about the transaction, including:
-    - [ ] List of order items
-    - [ ] Order item quantities
-    - [ ] Individual order item costs
-    - [ ] Total order cost
+  - [x] Build a page in the UI that displays the list of all past orders.
+  - [x] The page lists all past orders for the user, including relevant information such as:
+    - [x] Order ID
+    - [x] Date
+    - [x] Total cost
+    - [x] Order status.
+  - [x] The user should be able to click on any individual order to take them to a separate page detailing the transaction.
+  - [x] The individual transaction page provides comprehensive information about the transaction, including:
+    - [x] List of order items
+    - [x] Order item quantities
+    - [x] Individual order item costs
+    - [x] Total order cost
 - [ ] **Filter Orders**.
   - [ ] Create an input on the Past Orders page of the frontend application that allows the user to filter orders by the email of the person who placed the order. 
   - [ ] Users can type in an email and click a button to filter the orders.

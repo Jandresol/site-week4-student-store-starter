@@ -47,6 +47,7 @@
   height: 50px;
   background: var(--dark-blue);
   margin-bottom: 15px;
+  width: 100%;
 }
 .ShoppingCart .header-row span {
   flex: 1;
@@ -72,6 +73,7 @@
   padding-bottom: 20px;
   margin-top: 10px;
   border-bottom: solid 1px var(--border-color);
+  width: 100%;
 }
 .ShoppingCart .product-row span {
   flex: 1;

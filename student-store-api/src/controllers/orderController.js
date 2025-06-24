@@ -160,6 +160,3 @@ exports.getOrderTotal = async (req, res) => {
 
     res.json({ total: order.total });
 };
-
-
-

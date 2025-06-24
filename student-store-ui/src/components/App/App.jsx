@@ -114,27 +114,30 @@ function App() {
         />
         <main>
           <Header/>
-          <SubNavbar
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-            searchInputValue={searchInputValue}
-            handleOnSearchInputChange={handleOnSearchInputChange}
-          />
           <Routes>
             <Route
               path="/"
               element={
-                <Home
-                  error={error}
-                  products={products}
-                  isFetching={isFetching}
-                  activeCategory={activeCategory}
-                  setActiveCategory={setActiveCategory}
-                  addToCart={handleOnAddToCart}
-                  searchInputValue={searchInputValue}
-                  removeFromCart={handleOnRemoveFromCart}
-                  getQuantityOfItemInCart={handleGetItemQuantity}
-                />
+                <>
+                  <SubNavbar
+                    toggleSidebar={toggleSidebar}
+                    activeCategory={activeCategory}
+                    setActiveCategory={setActiveCategory}
+                    searchInputValue={searchInputValue}
+                    handleOnSearchInputChange={handleOnSearchInputChange}
+                  />
+                  <Home
+                    error={error}
+                    products={products}
+                    isFetching={isFetching}
+                    activeCategory={activeCategory}
+                    setActiveCategory={setActiveCategory}
+                    addToCart={handleOnAddToCart}
+                    searchInputValue={searchInputValue}
+                    removeFromCart={handleOnRemoveFromCart}
+                    getQuantityOfItemInCart={handleGetItemQuantity}
+                  />
+                </>
               }
             />
             <Route

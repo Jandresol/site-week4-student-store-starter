@@ -16,15 +16,10 @@
 .header-title {
   font-size: 3rem;
   margin-bottom: 1rem;
-  font-weight: 700;
   color:#2e3c2f;
+  font-weight: 400;
+  font-family:'DM Serif Display';
 }
-
 .header-subtitle {
   font-size: 1.25rem;
-  font-weight: 400;
-}
-
-.header h1{
-    font-family:'serif';
 }

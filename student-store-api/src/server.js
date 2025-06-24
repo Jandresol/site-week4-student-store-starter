@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const productRoutes = require("./routes/productRoutes.js")
 const orderRoutes = require("./routes/orderRoutes.js")
+const orderItemRoutes = require("./routes/orderItemRoutes.js")
 const cors = require("cors")
 const morgan = require("morgan")
 
@@ -19,6 +20,7 @@ app.use(express.json())
 // Links the router for products
 app.use("/products", productRoutes)
 app.use("/orders", orderRoutes)
+app.use("/order-items", orderItemRoutes)
 
 const PORT = process.env.PORT 
 
