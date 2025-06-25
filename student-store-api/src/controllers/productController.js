@@ -5,7 +5,7 @@ exports.getAll = async (req, res) => {
 
     const filters = {}
     const orderBy = []
-
+    
     if (category) {
         filters.category = {
             equals: category,

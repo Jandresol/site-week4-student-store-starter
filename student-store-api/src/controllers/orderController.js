@@ -80,10 +80,10 @@ exports.create = async (req, res) => {
 // Put /orders/:id
 exports.update = async (req, res) => {
     const id = Number(req.params.id)
-    const { customer, status, createdAt } = req.body
+    const { customer, email, status } = req.body
     const updatedorder = await prisma.order.update({
         where: { id },
-        data: { customer, status },
+        data: { customer, email, status },
     })
     res.json(updatedorder)
 }

@@ -6,19 +6,23 @@ import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import NotFound from "../NotFound/NotFound";
-import { removeFromCart, addToCart, getQuantityOfItemInCart, getTotalItemsInCart } from "../../utils/cart";
+import {
+  removeFromCart,
+  addToCart,
+  getQuantityOfItemInCart,
+  getTotalItemsInCart,
+} from "../../utils/cart";
 import "./App.css";
-import Header from "../Header/Header"
+import Header from "../Header/Header";
 import Orders from "../Orders/Orders";
 import OrderPage from "../OrderPage/OrderPage";
 
 function App() {
-
   // State variables
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All Categories");
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [userInfo, setUserInfo] = useState({ name: "", email: ""});
+  const [userInfo, setUserInfo] = useState({ name: "", email: "" });
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [isFetching, setIsFetching] = useState(false);
@@ -64,7 +68,6 @@ function App() {
         )
       );
 
-      console.log("Order complete:", order);
       setCart({});
       setUserInfo({ name: "", email: "" });
       setOrder(order);
@@ -73,23 +76,20 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     const fetchProducts = async () => {
       setIsFetching(true);
       try {
-        const { data } = await axios.get("http://localhost:3000/products") ;
-        console.log(data);
+        const { data } = await axios.get("http://localhost:3000/products");
         setProducts(data);
-        } catch (err) {
-          console.error("Error Fetching Products")
-        } finally {
-          setIsFetching(false);
-        }
-      };
-      fetchProducts();
-    }, []);
-
+      } catch (err) {
+        console.error("Error Fetching Products");
+      } finally {
+        setIsFetching(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <div className="App">
@@ -112,7 +112,7 @@ function App() {
           setOrder={setOrder}
         />
         <main>
-          <Header/>
+          <Header />
           <Routes>
             <Route
               path="/"
@@ -152,18 +152,8 @@ function App() {
                 />
               }
             />
-            <Route
-              path="/orders"
-              element={
-                <Orders/>
-              }
-            />
-            <Route
-              path="/orders/:orderId"
-              element={
-                <OrderPage/>
-              }
-            />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/:orderId" element={<OrderPage />} />
             <Route
               path="*"
               element={

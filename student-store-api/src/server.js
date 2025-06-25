@@ -24,9 +24,6 @@ app.use("/order-items", orderItemRoutes)
 
 const PORT = process.env.PORT 
 
-app.get('/', (req, res) => {
-    res.send('This is my main page')
-})
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
