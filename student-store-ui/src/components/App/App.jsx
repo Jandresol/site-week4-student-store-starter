@@ -41,37 +41,36 @@ function App() {
 
   // Populate Database on submit
   const handleOnCheckout = async () => {
-    // Create an order
-    const orderRes = await fetch("http://localhost:3000/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    try {
+      // Create an order
+      const orderRes = await axios.post("http://localhost:3000/orders", {
         customer: userInfo.name,
         email: userInfo.email,
-        status: "completed"
-      }),
-    });
-
-    const order = await orderRes.json();
-
-    // Initialize items array
-    const cartItems = Object.entries(cart).map(([productId, quantity]) => ({
-      productId: Number(productId),
-      quantity,
-    }));
-
-    // Post request for all order items
-    for (const item of cartItems) {
-      await fetch(`http://localhost:3000/orders/${order.id}/items`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(item),
+        status: "completed",
       });
-    }
 
-    console.log("Order complete:", order);
-    setCart({});
-    setOrder(order);
+      const order = orderRes.data;
+
+      // Prepare cart items
+      const cartItems = Object.entries(cart).map(([productId, quantity]) => ({
+        productId: Number(productId),
+        quantity,
+      }));
+
+      // Send all order items in parallel
+      await Promise.all(
+        cartItems.map((item) =>
+          axios.post(`http://localhost:3000/orders/${order.id}/items`, item)
+        )
+      );
+
+      console.log("Order complete:", order);
+      setCart({});
+      setUserInfo({ name: "", email: "" });
+      setOrder(order);
+    } catch (error) {
+      console.error("Checkout failed:", error);
+    }
   };
 
 
