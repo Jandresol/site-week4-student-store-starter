@@ -3,7 +3,7 @@ import './Orders.css';
 
 function Orders() {
     const [orders, setOrders] = useState([]);
-    const [filteredOrders, setFilteredOrders] = useState([]);
+    const [filteredOrders, setFilteredOrders] = useState(null);
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState(null);
     const [emailInputValue, setEmailInputValue] = useState("");
@@ -21,10 +21,10 @@ function Orders() {
         const email = emailInputValue.trim().toLowerCase();
 
         if (!email) {
-            setOrders([]);
-            setFilteredOrders([]);
-            setError(null);
-            return;
+        setOrders([]);
+        setFilteredOrders(null);
+        setError(null);
+        return;
         }
 
         setIsFetching(true);
@@ -69,11 +69,15 @@ function Orders() {
                 <button type="submit"><i className="material-icons">search</i></button>
             </form>
 
-            <h2>Past Orders</h2>
-            {isFetching && <p>Loading orders...</p>}
-            {error && <p className="error">{error}</p>}
-            {filteredOrders.length === 0 && !isFetching && <p>No orders found.</p>}
-
+            {filteredOrders !== null && (
+            <>
+                <h2>Past Orders</h2>
+                {isFetching && <p>Loading orders...</p>}
+                {error && <p className="error">{error}</p>}
+                {filteredOrders.length === 0 && !isFetching && <p>No orders found.</p>}
+            </>
+            )}
+            {filteredOrders !== null && (
             <ul className="orders-list">
                 {filteredOrders.map(order => (
                     <li key={order.id} className="order-item">
@@ -96,8 +100,9 @@ function Orders() {
                     </li>
                 ))}
             </ul>
+            )}
 
-            {filteredOrders.length > 0 && (
+            {filteredOrders !== null && filteredOrders.length > 0 && (
                 <p>Total Orders: {filteredOrders.length}</p>
             )}
         </div>

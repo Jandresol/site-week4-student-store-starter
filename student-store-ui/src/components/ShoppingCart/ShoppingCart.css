@@ -27,6 +27,12 @@
   width: 100%;
   padding-left: 0.5rem;
 }
+
+.ShoppingCart i {
+    cursor: default;
+
+}
+
 .ShoppingCart .cart-icon {
   margin-bottom: 16px;
 }

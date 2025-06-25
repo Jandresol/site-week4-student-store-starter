@@ -257,6 +257,7 @@
 }
 
 .Orders .search-bar input {
+  font-family: 'Inter';
   height: 40px;
   padding: 0 15px;
   border: none; /* Remove individual border */

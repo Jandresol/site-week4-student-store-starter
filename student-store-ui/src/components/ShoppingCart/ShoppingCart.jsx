@@ -81,9 +81,7 @@ const CartItems = ({ products, cart }) => {
     <>
       <h3 className="">
         Shopping Cart{" "}
-        <span className="button">
           <i className="material-icons md-48">add_shopping_cart</i>
-        </span>
       </h3>
       {hasItems ? (
         <>
