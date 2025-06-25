@@ -35,6 +35,10 @@ exports.getAll = async (req, res) => {
         const orders = await prisma.order.findMany({
             where: filters,
             orderBy: orderBy.length ? orderBy : undefined,
+            include: {orderItems: {
+                include: {product: true},
+                },
+            }
         });
 
         res.json(orders);
@@ -49,8 +53,12 @@ exports.getById = async (req, res) => {
     const order = await prisma.order.findUnique({
         where: { id },
         include: {
-            orderItems: true,
-        },
+            orderItems: {
+            include: {
+                product: true,
+                },
+            },
+        }
     });
     if (!order) return res.status(404).json({ error: "Not found!" });
     await updateOrderTotal(id);

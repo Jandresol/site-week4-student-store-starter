@@ -5,9 +5,9 @@ function Header() {
   return (
     <>
       <header className="big-header">
-        <div className="header-content">
-          <h1 className="header-title">Earthy Prints</h1>
-          <p className="header-subtitle">Beautiful prints for your decor needs</p>
+        <div className="big-header-content">
+          <h1 className="big-header-title">Earthy Prints</h1>
+          <p className="big-header-subtitle">Beautiful prints for your decor needs</p>
         </div>
       </header>
       <Navbar />

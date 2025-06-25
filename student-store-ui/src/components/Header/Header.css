@@ -34,13 +34,13 @@
             z-index: 1;
         }
 
-        .header-content {
+        .big-header-content {
             max-width: 600px;
             position: relative;
             z-index: 2;
         }
 
-        .header-title {
+        .big-header-title {
             font-family: 'Playfair Display', serif;
             font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 700;
@@ -51,7 +51,7 @@
             animation: slideUp 1.2s ease-out;
         }
 
-        .header-title::after {
+        .big-header-title::after {
             content: '';
             position: absolute;
             bottom: -15px;
@@ -63,7 +63,7 @@
             animation: expandLine 1.5s ease-out 0.5s both;
         }
 
-        .header-subtitle {
+        .big-header-subtitle {
             font-family: 'Inter', sans-serif;
             font-size: clamp(1.25rem, 3vw, 1.6rem);
             color: #ffffff;
@@ -106,11 +106,11 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .header {
+            .big-header {
                 padding: 2rem 1rem;
             }
             
-            .header-title {
+            .big-header-title {
                 margin-bottom: 1rem;
             }
         }

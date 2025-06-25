@@ -3,11 +3,10 @@
 
 .OrderPage {
   width: 80%;
-max-width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
   font-family: 'Inter', sans-serif;
-  background-color: #fafafa;
   min-height: 100vh;
 }
 
@@ -22,9 +21,22 @@ max-width: 1200px;
   padding-bottom: 16px;
 }
 
-/* Order summary card */
+/* Order items table container - first box */
+.order-items-table {
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Order summary card - second box */
 .order-summary {
-    width: 100%;
+  width: 100%;
   background: #ffffff;
   border: 1px solid #e1e5e9;
   border-radius: 12px;
@@ -38,11 +50,6 @@ max-width: 1200px;
   color: #333;
   margin: 12px 0;
   line-height: 1.5;
-  background: #ffffff;
-  border: 1px solid #e1e5e9;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .OrderPage > p:first-of-type {
@@ -50,6 +57,27 @@ max-width: 1200px;
 }
 
 .OrderPage > p strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Order summary paragraph styling */
+.order-summary p {
+  font-size: 16px;
+  color: #333;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.order-summary p:first-child {
+  margin-top: 0;
+}
+
+.order-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.order-summary p strong {
   color: #1a1a1a;
   font-weight: 600;
 }
@@ -87,79 +115,43 @@ max-width: 1200px;
   font-weight: 700 !important;
 }
 
-/* Items section */
-.OrderPage h2 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 32px 0 20px 0;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #e1e5e9;
+/* Table header and rows */
+.order-item-header,
+.order-item-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  gap: 1rem;
 }
 
-/* Order items list */
-.order-items {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
+.order-item-header {
+  border-bottom: var(--dark-green) solid 1px;
+  font-weight: 700;
 }
 
-/* Individual item card */
-.order-item-details {
-  background: #ffffff;
-  border: 1px solid #e1e5e9;
-  border-radius: 12px;
-  padding: 20px;
+.order-item-row {
+  border-bottom: 1px solid #e1e5e9;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  position: relative;
 }
 
-.order-item-details:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+.order-item-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-color: var(--dark-green);
 }
 
-.order-item-details::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: #4CAF50;
-  border-radius: 4px 0 0 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.order-item-details:hover::before {
-  opacity: 1;
-}
-
-.order-item-details p {
-  font-size: 14px;
-  color: #666;
-  margin: 8px 0;
-  line-height: 1.4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.order-item-details p:first-child {
-  margin-top: 0;
-}
-
-.order-item-details p:last-child {
+.order-item-row:last-child {
   margin-bottom: 0;
-  font-weight: 600;
-  color: var(--dark-green);
-  font-size: 16px;
+}
+
+/* Order item image */
+.order-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 /* Loading and error states */
@@ -184,17 +176,6 @@ max-width: 1200px;
   padding: 40px 20px;
 }
 
-/* Enhanced grid layout for larger screens */
-@media (min-width: 768px) {
-  .order-items {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-  
-  .order-item-details {
-    padding: 24px;
-  }
-}
-
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .OrderPage {
@@ -205,16 +186,24 @@ max-width: 1200px;
     font-size: 26px;
   }
   
-  .OrderPage h2 {
-    font-size: 20px;
-  }
-  
-  .OrderPage > p {
+  .order-items-table {
     padding: 16px;
   }
   
-  .order-item-details {
+  .order-summary {
     padding: 16px;
+  }
+  
+  .order-item-header,
+  .order-item-row {
+    grid-template-columns: 60px 1fr 80px 80px;
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+  
+  .order-img {
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -223,9 +212,15 @@ max-width: 1200px;
     font-size: 22px;
   }
   
-  .order-item-details p {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+  .order-item-header,
+  .order-item-row {
+    grid-template-columns: 50px 1fr;
+    gap: 0.5rem;
+  }
+  
+  
+  .order-img {
+    width: 40px;
+    height: 40px;
   }
 }

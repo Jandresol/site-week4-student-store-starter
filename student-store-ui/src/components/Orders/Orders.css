@@ -146,14 +146,14 @@
 .order-total {
   font-size: 24px;
   font-weight: 700;
-  color: var(--dark-green);
+  color: var(--dark-blue);
   margin: 0;
   text-align: right;
   font-family: ''
 }
 
 .order-details-button {
-  background-color: var(--dark-green);
+  background-color: var(--dark-blue);
   color: white;
   border: none;
   padding: 10px 20px;

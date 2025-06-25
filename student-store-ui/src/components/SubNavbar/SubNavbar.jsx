@@ -19,7 +19,9 @@ function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handle
               value={searchInputValue}
               onChange={handleOnSearchInputChange}
             />
-            <i className="material-icons">search</i>
+            <button> 
+              <i className="material-icons">search</i>
+            </button>
           </div>
         </div>
 

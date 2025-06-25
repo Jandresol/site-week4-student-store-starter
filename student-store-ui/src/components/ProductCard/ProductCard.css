@@ -1,12 +1,3 @@
-:root {
-  --pure-white: #ffffff;
-  --border-color: #e5e5e5;
-  --accent-orange: #d4622a;
-  --bright-green: #4a7c59;
-  --earthy-brown: #8b4513;
-  --warm-beige: #f5f5dc;
-}
-
 .ProductCard {
   width: 250px;
   background: var(--pure-white);
@@ -85,12 +76,21 @@
 .ProductCard .actions .buttons i {
   width: 20px;
   height: 20px;
-  border: solid 1px var(--bright-green);
-  color: var(--bright-green);
+  border: var(--bright-green) 7px solid;
+  background-color: var(--bright-green);
+  color: white;
+  border-radius: 100%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
   margin: 10px 5px;
+  transition: background-color 0.3 ease;
 }
+
+.ProductCard .actions .buttons i:hover {
+  border: var(--dark-green) 7px solid;
+  background-color: var(--dark-green);
+}
+

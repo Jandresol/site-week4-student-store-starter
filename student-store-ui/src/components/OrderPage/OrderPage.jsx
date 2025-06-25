@@ -47,30 +47,58 @@ function OrderPage() {
     if (!order) return null;
 
     return (
-        <div className="OrderPage">
-        <h1>Order #{order.id}</h1>
-        
-        <div className="order-summary">
-            <p><strong>Customer:</strong> {order.customer}</p>
-            <p>
-            <strong>Status:</strong> 
-            <span className={getStatusClass(order.status)}>{order.status}</span>
-            </p>
-            <p><strong>Created At:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
-            <p className="order-total"><strong>Total:</strong> ${order.total.toFixed(2)}</p>
-        </div>
+<div className="OrderPage">
+  <h1>Order #{order.id}</h1>
+    <div className="order-summary">
+        <h2>Order Details</h2>
+        <p>
+        <strong>Customer:</strong>{" "}
+        <span>{order.customer}</span>
+        </p>
 
-        <h2>Order Items</h2>
-        <ul className="order-items">
-            {order.orderItems.map(item => (
-            <li key={item.id} className="order-item-details">
-                <p><strong>Product ID:</strong> <span>{item.productId}</span></p>
-                <p><strong>Quantity:</strong> <span>{item.quantity}</span></p>
-                <p><strong>Price:</strong> <span>${item.price.toFixed(2)}</span></p>
-            </li>
-            ))}
-        </ul>
+        <p>
+        <strong>Status:</strong>{" "}
+        <span className={getStatusClass(order.status)}>{order.status}</span>
+        </p>
+        <p>
+        <strong>Created At:</strong>{" "}
+        {new Date(order.createdAt).toLocaleDateString()}
+        </p>
+    </div>
+
+  <div className="order-items-table">
+    <h2>Order Items</h2>
+    <div className="order-item-header">
+      <span>Image</span>
+      <span>Product</span>
+      <span>Quantity</span>
+      <span>Price</span>
+    </div>
+
+    {order.orderItems.map((item) => (
+      <div key={item.id} className="order-item-row">
+        <div className="order-item-image">
+          {item.product?.image_url && (
+            <img
+              src={item.product.image_url}
+              alt={item.product.name}
+              className="order-img"
+            />
+          )}
         </div>
+        <div>{item.product?.name || "Product not found"}</div>
+        <div>{item.quantity}</div>
+        <div>${(item.price * item.quantity).toFixed(2)}</div>
+      </div>
+      
+    ))}
+            <p className="order-total">
+        <strong>Total:</strong> ${order.total.toFixed(2)}
+        </p>
+
+  </div>
+
+</div>
     );
 }
 
